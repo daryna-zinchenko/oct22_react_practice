@@ -44,6 +44,13 @@ export const App: React.FC = () => {
                   key="product.id"
                   data-cy="FilterUser"
                   href="#/"
+                  className={cn(
+                    {
+                      'is-active': productsWithCatAndUser.every(product => (
+                        product.category?.user?.id === user.id
+                      )),
+                    },
+                  )}
                 >
                   {user.name}
                 </a>
