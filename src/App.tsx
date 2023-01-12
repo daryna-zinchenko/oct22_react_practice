@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.scss';
-// import cn from 'classnames';
+import cn from 'classnames';
 
 import usersFromServer from './api/users';
 import productsFromServer from './api/products';
@@ -180,11 +180,19 @@ export const App: React.FC = () => {
                     </td>
 
                     <td data-cy="ProductName">{product.name}</td>
-                    <td data-cy="ProductCategory">{product.category?.title}</td>
+                    <td data-cy="ProductCategory">
+                      {product.category?.icon}
+                      {' '}
+                      -
+                      {' '}
+                      {product.category?.title}
+                    </td>
 
                     <td
                       data-cy="ProductUser"
-                      className="has-text-link"
+                      className={cn('has-text-link',
+                        { 'has-text-link': product.user?.sex === 'm' },
+                        { 'has-text-danger': product.user?.sex === 'w' })}
                     >
                       {product.user?.name}
                     </td>
